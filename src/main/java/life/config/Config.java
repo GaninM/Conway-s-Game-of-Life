@@ -1,4 +1,4 @@
-package Life;
+package life.config;
 
 import java.util.Scanner;
 

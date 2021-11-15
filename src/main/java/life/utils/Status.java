@@ -1,4 +1,4 @@
-package Life;
+package life.utils;
 
 public enum Status {
     NONE, //Пусто

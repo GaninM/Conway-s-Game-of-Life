@@ -1,4 +1,8 @@
-package Life;
+package life.model;
+
+import life.CellController;
+import life.utils.Status;
+import life.config.Config;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,11 +11,15 @@ import java.awt.event.MouseEvent;
 
 
 public class Pixel extends JPanel {
+
     Cell cell;
+
+    CellController cellController;
 
     public Pixel(int x, int y) {
         super();
         this.cell = new Cell();
+        setBorder(BorderFactory.createLineBorder(Color.BLACK));
         setBounds(x * Config.PIXEL_SIZE, y * Config.PIXEL_SIZE, Config.PIXEL_SIZE, Config.PIXEL_SIZE);
         setBackground(getColor(Status.NONE));
         addMouseListener(new MouseAdapter() {
@@ -36,5 +44,22 @@ public class Pixel extends JPanel {
 
         }
     }
+
+    public void setColor(){
+        setBackground(getColor(cell.status));
+    }
+
+    public void firstStep(){
+        cellController.firstStep();
+        setColor();
+    }
+
+    public void secondStep(){
+        cellController.secondStep();
+        setColor();
+    }
+
+
+
 
 }

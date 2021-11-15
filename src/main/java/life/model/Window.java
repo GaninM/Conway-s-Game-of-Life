@@ -1,4 +1,7 @@
-package Life;
+package life.model;
+
+import life.config.Config;
+import life.model.Pixel;
 
 import javax.swing.*;
 
@@ -8,12 +11,8 @@ public class Window extends JFrame implements Runnable {
     //Основное окно
     private JFrame mainPanel;
 
-    //Кнопки
-    private JButton startButton, stopButton, clearButton;
-
     //Массив пикселей
-    Pixel[][] pixels;
-
+    static Pixel[][] pixels;
 
     @Override
     public void run() {
@@ -35,21 +34,22 @@ public class Window extends JFrame implements Runnable {
 
 
         //Кнопка Start
-        startButton = new JButton("Start");
+        //Кнопки
+        JButton startButton = new JButton("Start");
         startButton.setVisible(true);
         startButton.setBounds(Config.width * Config.PIXEL_SIZE + 20, 25, 120, 30);
         mainPanel.add(startButton);
 
 
         //Кнопка Stop
-        stopButton = new JButton("Stop");
+        JButton stopButton = new JButton("Stop");
         stopButton.setVisible(true);
         stopButton.setBounds(Config.width * Config.PIXEL_SIZE + 20, 75, 120, 30);
         mainPanel.add(stopButton);
 
 
         //Кнопка Clear
-        clearButton = new JButton("Clear");
+        JButton clearButton = new JButton("Clear");
         clearButton.setVisible(true);
         clearButton.setBounds(Config.width * Config.PIXEL_SIZE + 20, 125, 120, 30);
         mainPanel.add(clearButton);
@@ -65,4 +65,7 @@ public class Window extends JFrame implements Runnable {
         }
     }
 
+    public Pixel[][] getPixels() {
+        return pixels;
+    }
 }
