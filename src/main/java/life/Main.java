@@ -5,8 +5,8 @@ import life.model.Window;
 public class Main {
     public static void main(String[] args) {
 
-        Window window = new Window();
-        window.run();
+       ConfigFrame configFrame = new ConfigFrame();
+       configFrame.run();
     }
 
 }

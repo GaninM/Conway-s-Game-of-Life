@@ -1,17 +1,15 @@
 package life.model;
 
 import life.config.Config;
-import life.model.Pixel;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 public class Window extends JFrame implements Runnable {
 
-    //Основное окно
     private JFrame mainPanel;
 
-    //Массив пикселей
     static Pixel[][] pixels;
 
     @Override
@@ -22,36 +20,26 @@ public class Window extends JFrame implements Runnable {
 
     void initMainPanel() {
         mainPanel = new JFrame("Game of Life");
-        //На весь экран
         mainPanel.setLayout(null);
-        //Раземер основного экрана
-        mainPanel.setSize(Config.width * Config.PIXEL_SIZE + 175, Config.heigth * Config.PIXEL_SIZE + 55);
-        //Зыкрытие на крестик
+        mainPanel.setSize(Config.width * Config.pixelSize + 175, Config.heigth * Config.pixelSize + 55);
         mainPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Создание окна, при запуске программы, по центру экрана
         mainPanel.setLocationRelativeTo(null);
+        mainPanel.setMinimumSize(new Dimension(300, 300));
         mainPanel.setVisible(true);
 
-
-        //Кнопка Start
-        //Кнопки
         JButton startButton = new JButton("Start");
         startButton.setVisible(true);
-        startButton.setBounds(Config.width * Config.PIXEL_SIZE + 20, 25, 120, 30);
+        startButton.setBounds(Config.width * Config.pixelSize + 20, 25, 120, 30);
         mainPanel.add(startButton);
 
-
-        //Кнопка Stop
         JButton stopButton = new JButton("Stop");
         stopButton.setVisible(true);
-        stopButton.setBounds(Config.width * Config.PIXEL_SIZE + 20, 75, 120, 30);
+        stopButton.setBounds(Config.width * Config.pixelSize + 20, 75, 120, 30);
         mainPanel.add(stopButton);
 
-
-        //Кнопка Clear
         JButton clearButton = new JButton("Clear");
         clearButton.setVisible(true);
-        clearButton.setBounds(Config.width * Config.PIXEL_SIZE + 20, 125, 120, 30);
+        clearButton.setBounds(Config.width * Config.pixelSize + 20, 125, 120, 30);
         mainPanel.add(clearButton);
     }
 
@@ -65,7 +53,4 @@ public class Window extends JFrame implements Runnable {
         }
     }
 
-    public Pixel[][] getPixels() {
-        return pixels;
-    }
 }
