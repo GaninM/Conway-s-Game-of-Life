@@ -1,6 +1,6 @@
 package life;
 
-import life.model.Window;
+import life.model.ConfigFrame;
 
 public class Main {
     public static void main(String[] args) {

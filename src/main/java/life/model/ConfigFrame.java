@@ -1,8 +1,6 @@
-package life;
+package life.model;
 
 import life.config.Config;
-import life.model.Window;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

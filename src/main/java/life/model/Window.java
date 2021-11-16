@@ -1,7 +1,6 @@
 package life.model;
 
 import life.config.Config;
-
 import javax.swing.*;
 import java.awt.*;
 
