@@ -3,10 +3,10 @@ package life.config;
 
 public class Config {
 
-    public static int width;
+    public static int WIDTH;
 
-    public static int heigth;
+    public static int HEIGHT;
 
-    public static int pixelSize;
+    public static int PIXEL_SIZE;
 
 }

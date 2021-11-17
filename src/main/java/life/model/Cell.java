@@ -1,14 +1,13 @@
 package life.model;
 
 import life.utils.Status;
-
 import java.util.ArrayList;
 
 public class Cell {
 
-    ArrayList<Cell> nearNeighbors;
+    private final ArrayList<Cell> nearNeighbors;
 
-    Status status;
+    public Status status;
 
     public Cell() {
         status = Status.NONE;
@@ -16,7 +15,7 @@ public class Cell {
     }
 
     // добавляем всех соседей
-    void addNearNeighbors(Cell cell) {
+    public void addNearNeighbors(Cell cell) {
         nearNeighbors.add(cell);
     }
 
