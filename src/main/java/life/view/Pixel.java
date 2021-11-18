@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
 public class Pixel extends JPanel {
 
     public Cell cell;
@@ -42,7 +41,7 @@ public class Pixel extends JPanel {
         }
     }
 
-    public void setColor(){
+    public void setColor() {
         setBackground(getColor(cell.status));
     }
 

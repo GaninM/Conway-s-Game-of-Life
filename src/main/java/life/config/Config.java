@@ -1,6 +1,5 @@
 package life.config;
 
-
 public class Config {
 
     public static int WIDTH;

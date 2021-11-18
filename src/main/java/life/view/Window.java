@@ -1,14 +1,10 @@
 package life.view;
 
 import life.config.Config;
-import life.model.FrameController;
-import life.utils.Status;
+import life.controllers.FrameController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 
 public class Window extends JFrame implements Runnable, FrameController {
 
@@ -16,13 +12,15 @@ public class Window extends JFrame implements Runnable, FrameController {
 
     private Pixel[][] pixels;
 
+
     @Override
     public void run() {
         initMainPanel();
         initPixels();
     }
 
-    void initMainPanel() {
+
+    private void initMainPanel() {
         mainPanel = new JFrame("Game of Life");
         mainPanel.setLayout(null);
         mainPanel.setSize(Config.WIDTH * Config.PIXEL_SIZE + 175, Config.HEIGHT * Config.PIXEL_SIZE + 55);
@@ -30,38 +28,24 @@ public class Window extends JFrame implements Runnable, FrameController {
         mainPanel.setLocationRelativeTo(null);
         mainPanel.setMinimumSize(new Dimension(300, 300));
         mainPanel.setVisible(true);
-        mainPanel.add(initButton("Start", 25));
-        mainPanel.add(initButton("Stop", 75));
-        mainPanel.add(initButton("Clear", 125));
+
+        JButton start = new JButton("Start");
+        start.addActionListener(e -> startGame());
+
+        JButton stop = new JButton("Stop");
+        stop.addActionListener(e -> stopGame());
+
+        JButton clear = new JButton("Clear");
+        clear.addActionListener(e -> clearGame(pixels));
+
+        mainPanel.add(initButton(start, 25));
+        mainPanel.add(initButton(stop, 75));
+        mainPanel.add(initButton(clear, 125));
     }
 
-    private JButton initButton(String nameButton, int y) {
-        JButton button = new JButton(nameButton);
+    private JButton initButton(JButton button, int axisY) {
         button.setVisible(true);
-        button.setBounds(Config.WIDTH * Config.PIXEL_SIZE + 20, y, 120, 30);
-        switch (nameButton) {
-            case "Start":
-                button.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        //startGame();
-                    }
-                });
-            case "Stop":
-                button.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        //stopGame();
-                    }
-                });
-            case "Clear":
-                button.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        clearGame(pixels);
-                    }
-                });
-        }
+        button.setBounds(Config.WIDTH * Config.PIXEL_SIZE + 20, axisY, 120, 30);
         return button;
     }
 
