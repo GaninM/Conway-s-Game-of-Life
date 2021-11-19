@@ -2,9 +2,10 @@ package life.view;
 
 import life.config.Config;
 import life.controllers.FrameController;
-
+import life.utils.Constants;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class Window extends JFrame implements Runnable, FrameController {
 
@@ -23,29 +24,21 @@ public class Window extends JFrame implements Runnable, FrameController {
     private void initMainPanel() {
         mainPanel = new JFrame("Game of Life");
         mainPanel.setLayout(null);
-        mainPanel.setSize(Config.WIDTH * Config.PIXEL_SIZE + 175, Config.HEIGHT * Config.PIXEL_SIZE + 55);
+        mainPanel.setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         mainPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainPanel.setLocationRelativeTo(null);
-        mainPanel.setMinimumSize(new Dimension(300, 300));
+        mainPanel.setMinimumSize(new Dimension(Constants.MIN_WINDOW_WIDTH, Constants.MIN_WINDOW_HEIGHT));
         mainPanel.setVisible(true);
-
-        JButton start = new JButton("Start");
-        start.addActionListener(e -> startGame());
-
-        JButton stop = new JButton("Stop");
-        stop.addActionListener(e -> stopGame());
-
-        JButton clear = new JButton("Clear");
-        clear.addActionListener(e -> clearGame(pixels));
-
-        mainPanel.add(initButton(start, 25));
-        mainPanel.add(initButton(stop, 75));
-        mainPanel.add(initButton(clear, 125));
+        mainPanel.add(initButton("start", 25, e -> startGame()));
+        mainPanel.add(initButton("stop", 75, e -> stopGame()));
+        mainPanel.add(initButton("clear", 125, e -> clearGame(pixels)));
     }
 
-    private JButton initButton(JButton button, int axisY) {
+    private JButton initButton(String name, int axisY, ActionListener action) {
+        JButton button = new JButton(name);
         button.setVisible(true);
-        button.setBounds(Config.WIDTH * Config.PIXEL_SIZE + 20, axisY, 120, 30);
+        button.setBounds(Constants.BUTTON_BOUNDS_X, axisY, 120, 30);
+        button.addActionListener(action);
         return button;
     }
 

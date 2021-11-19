@@ -1,20 +1,22 @@
 package life.model;
 
 import life.utils.Status;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cell {
 
-    private final ArrayList<Cell> nearNeighbors;
+    private final List<Cell> nearNeighbors;
 
-    public Status status;
+    private Status status;
 
     public Cell() {
         status = Status.NONE;
         nearNeighbors = new ArrayList<>();
     }
 
-    // добавляем всех соседей
+    //Add all neighbors
     public void addNearNeighbors(Cell cell) {
         nearNeighbors.add(cell);
     }
@@ -23,12 +25,16 @@ public class Cell {
         return status == Status.LIVE || status == Status.DIES;
     }
 
-
     public Status getStatus() {
         return status;
     }
 
-    public ArrayList<Cell> getNearNeighbors() {
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public List<Cell> getNearNeighbors() {
         return nearNeighbors;
     }
+
 }

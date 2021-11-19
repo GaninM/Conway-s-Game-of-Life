@@ -1,6 +1,8 @@
 package life.view;
 
 import life.config.Config;
+import life.utils.Constants;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,29 +20,30 @@ public class ConfigFrame extends JFrame implements ActionListener, Runnable {
         this.setTitle("Setting game parameters");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
-        this.setSize(350, 125);
+        this.setSize(Constants.CONFIG_FRAME_WIDTH, Constants.CONFIG_FRAME_HEIGHT);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-        WIDTH = new JTextField();
-        HEIGHT = new JTextField();
-        PIXEL_SIZE = new JTextField();
+        WIDTH = initTextField();
+        HEIGHT = initTextField();
+        PIXEL_SIZE = initTextField();
         SUBMIT = new JButton("Submit");
         SUBMIT.addActionListener(this);
 
         this.add(new JLabel("Width"));
-        this.add(initTextField(WIDTH));
+        this.add(WIDTH);
         this.add(new JLabel("Height"));
-        this.add(initTextField(HEIGHT));
+        this.add(HEIGHT);
         this.add(new JLabel("Pixel size"));
-        this.add(initTextField(PIXEL_SIZE));
+        this.add(PIXEL_SIZE);
         this.add(SUBMIT);
         this.pack();
     }
 
-    private JTextField initTextField(JTextField jTextField) {
-        jTextField.setPreferredSize(new Dimension(80, 20));
-        return jTextField;
+    private JTextField initTextField() {
+        JTextField textField = new JTextField();
+        textField.setPreferredSize(new Dimension(Constants.TEXT_FIELD_WIDTH, Constants.TEXT_FIELD_HEIGHT));
+        return textField;
     }
 
     @Override
@@ -50,7 +53,7 @@ public class ConfigFrame extends JFrame implements ActionListener, Runnable {
             Config.HEIGHT = Integer.parseInt(HEIGHT.getText());
             Config.PIXEL_SIZE = Integer.parseInt(PIXEL_SIZE.getText());
             dispose();
-            life.view.Window window = new Window();
+            Window window = new Window();
             window.run();
         }
     }

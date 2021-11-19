@@ -3,6 +3,7 @@ package life.view;
 import life.model.Cell;
 import life.utils.Status;
 import life.config.Config;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -11,6 +12,7 @@ import java.awt.event.MouseEvent;
 public class Pixel extends JPanel {
 
     public Cell cell;
+
 
     public Pixel(int x, int y) {
         super();
@@ -21,7 +23,7 @@ public class Pixel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                cell.status = Status.LIVE;
+                cell.setStatus(Status.LIVE);
                 setBackground(getColor(Status.LIVE)); //Проверка работоспособности мыши, позже удалить.
             }
         });
@@ -42,7 +44,7 @@ public class Pixel extends JPanel {
     }
 
     public void setColor() {
-        setBackground(getColor(cell.status));
+        setBackground(getColor(cell.getStatus()));
     }
 
 }
