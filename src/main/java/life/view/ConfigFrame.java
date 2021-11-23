@@ -1,7 +1,6 @@
 package life.view;
 
 import life.config.Config;
-import life.controllers.MainThread;
 import life.utils.Constants;
 
 import javax.swing.*;
@@ -12,8 +11,11 @@ import java.awt.event.ActionListener;
 public class ConfigFrame extends JFrame implements ActionListener, Runnable {
 
     private final JTextField WIDTH;
+
     private final JTextField HEIGHT;
+
     private final JTextField PIXEL_SIZE;
+
     private final JButton SUBMIT;
 
 

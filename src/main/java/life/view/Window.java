@@ -2,8 +2,8 @@ package life.view;
 
 import life.config.Config;
 import life.controllers.FrameController;
-import life.controllers.MainThread;
 import life.utils.Constants;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -19,10 +19,6 @@ public class Window extends JFrame implements Runnable, FrameController {
     public void run() {
         initMainPanel();
         initPixels();
-
-        MainThread mainThread = new MainThread(pixels);
-        mainThread.run();
-
     }
 
 
@@ -34,7 +30,7 @@ public class Window extends JFrame implements Runnable, FrameController {
         mainPanel.setLocationRelativeTo(null);
         mainPanel.setMinimumSize(new Dimension(Constants.MIN_WINDOW_WIDTH, Constants.MIN_WINDOW_HEIGHT));
         mainPanel.setVisible(true);
-        mainPanel.add(initButton("start", 25, e -> startGame()));
+        mainPanel.add(initButton("start", 25, e -> startGame(pixels)));
         mainPanel.add(initButton("stop", 75, e -> stopGame()));
         mainPanel.add(initButton("clear", 125, e -> clearGame(pixels)));
     }

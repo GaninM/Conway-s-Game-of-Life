@@ -4,15 +4,14 @@ import life.config.Config;
 import life.utils.Status;
 import life.view.Pixel;
 
-import java.awt.*;
-
 public interface FrameController {
 
+    MainThread mainThread = new MainThread();
 
 
-
-    default void startGame() {
-
+    default void startGame(Pixel[][] pixels) {
+        mainThread.pixels = pixels;
+        mainThread.run();
     }
 
     default void stopGame() {
@@ -22,8 +21,8 @@ public interface FrameController {
     default void clearGame(Pixel[][] pixels) {
         for (int x = 0; x < Config.WIDTH; x++) {
             for (int y = 0; y < Config.HEIGHT; y++) {
-                pixels[x][y].cell.status = Status.NONE;
-                pixels[x][y].setBackground(Color.pink);
+                pixels[x][y].cell.setStatus(Status.NONE);
+                pixels[x][y].setColor();
             }
         }
     }
