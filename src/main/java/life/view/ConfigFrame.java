@@ -1,6 +1,7 @@
 package life.view;
 
 import life.config.Config;
+import life.controllers.MainThread;
 import life.utils.Constants;
 
 import javax.swing.*;

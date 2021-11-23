@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 
 public class Pixel extends JPanel {
 
-    public Cell cell;
+    public volatile Cell cell;
 
 
     public Pixel(int x, int y) {
@@ -23,8 +23,7 @@ public class Pixel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                cell.setStatus(Status.LIVE);
-                setBackground(getColor(Status.LIVE)); //Проверка работоспособности мыши, позже удалить.
+                cell.status = Status.LIVE;
             }
         });
     }
@@ -35,16 +34,27 @@ public class Pixel extends JPanel {
             default:
             case NONE:
                 return Color.pink;
-            case BORN:
-            case DIES:
-                return Color.LIGHT_GRAY;
+            case BORN :
+            case DIES :
+                return Color.GRAY;
             case LIVE:
                 return Color.CYAN;
         }
     }
 
     public void setColor() {
-        setBackground(getColor(cell.getStatus()));
+        setBackground(getColor(cell.status));
+    }
+
+    //___________________________________________________
+    public void firstStep() {
+        cell.firstStep();
+        setColor();
+    }
+
+    public void secondStep() {
+        cell.secondStep();
+        setColor();
     }
 
 }

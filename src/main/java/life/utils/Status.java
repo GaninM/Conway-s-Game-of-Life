@@ -5,5 +5,4 @@ public enum Status {
     BORN,
     LIVE,
     DIES
-
 }

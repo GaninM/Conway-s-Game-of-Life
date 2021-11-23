@@ -7,6 +7,8 @@ public class Main {
 
        ConfigFrame configFrame = new ConfigFrame();
        configFrame.run();
+
+
     }
 
 }

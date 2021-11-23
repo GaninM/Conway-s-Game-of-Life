@@ -2,6 +2,7 @@ package life.view;
 
 import life.config.Config;
 import life.controllers.FrameController;
+import life.controllers.MainThread;
 import life.utils.Constants;
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,10 @@ public class Window extends JFrame implements Runnable, FrameController {
     public void run() {
         initMainPanel();
         initPixels();
+
+        MainThread mainThread = new MainThread(pixels);
+        mainThread.run();
+
     }
 
 
@@ -50,6 +55,10 @@ public class Window extends JFrame implements Runnable, FrameController {
                 mainPanel.add(pixels[x][y]);
             }
         }
+    }
+
+    public Pixel[][] getPixels() {
+        return pixels;
     }
 
 }

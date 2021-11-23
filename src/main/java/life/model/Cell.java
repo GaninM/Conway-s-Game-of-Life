@@ -5,20 +5,17 @@ import life.utils.Status;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Cell {
+
+    public Status status;
 
     private final List<Cell> nearNeighbors;
 
-    private Status status;
 
     public Cell() {
-        status = Status.NONE;
-        nearNeighbors = new ArrayList<>();
-    }
-
-    //Add all neighbors
-    public void addNearNeighbors(Cell cell) {
-        nearNeighbors.add(cell);
+        this.status = Status.NONE;
+        this.nearNeighbors = new ArrayList<>();
     }
 
     public boolean isAlive() {
@@ -29,12 +26,58 @@ public class Cell {
         return status;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
 
     public List<Cell> getNearNeighbors() {
         return nearNeighbors;
+    }
+
+
+    ///////////////////////////////////////////////////////////
+
+    public void addNearNeighbors(Cell cell) {
+        nearNeighbors.add(cell);
+    }
+
+    public void firstStep() {
+        int around = countNearCells();
+        status = setStatus(around);
+    }
+
+    public void secondStep() {
+        status = replace();
+    }
+
+    // считаем сколько живых ячеек рядом
+    int countNearCells() {
+        int count = 0;
+        for (Cell cell : nearNeighbors) {
+            if (cell.isAlive()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public Status setStatus(int around) {
+        switch (status) {
+            case NONE:
+                return (around == 3) ? Status.BORN : Status.NONE;
+            case LIVE:
+                return (around < 2 || around > 4) ? Status.DIES : Status.LIVE;
+            default:
+                return status;
+        }
+    }
+
+    public Status replace() {
+        switch (status) {
+            case BORN:
+                return Status.LIVE;
+            case DIES:
+                return Status.NONE;
+            default:
+                return status;
+        }
     }
 
 }
