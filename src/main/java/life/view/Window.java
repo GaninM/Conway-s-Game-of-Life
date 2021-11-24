@@ -53,8 +53,4 @@ public class Window extends JFrame implements Runnable, FrameController {
         }
     }
 
-    public Pixel[][] getPixels() {
-        return pixels;
-    }
-
 }
