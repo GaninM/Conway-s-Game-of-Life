@@ -25,4 +25,7 @@ public class Constants {
 
     public static final int TEXT_FIELD_HEIGHT = 20;
 
+    //Game constants
+    public static final int TIMER_DELAY = 500;
+
 }

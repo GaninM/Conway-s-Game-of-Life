@@ -12,7 +12,7 @@ public class Window extends JFrame implements Runnable, FrameController {
 
     private JFrame mainPanel;
 
-    private Pixel[][] pixels;
+    private volatile Pixel[][] pixels;
 
 
     @Override

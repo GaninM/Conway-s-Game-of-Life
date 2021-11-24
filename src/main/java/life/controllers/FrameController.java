@@ -6,10 +6,8 @@ import life.view.Pixel;
 
 public interface FrameController {
 
-    MainThread mainThread = new MainThread();
-
-
     default void startGame(Pixel[][] pixels) {
+        MainThread mainThread = new MainThread();
         mainThread.pixels = pixels;
         mainThread.run();
     }
