@@ -14,7 +14,6 @@ public class DeathThread implements Runnable {
 
     private final Pixel[][] pixels;
 
-
     public DeathThread(Pixel[][] pixels) {
         this.pixels = pixels;
     }

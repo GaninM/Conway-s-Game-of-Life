@@ -31,8 +31,9 @@ public class Window extends JFrame implements Runnable, FrameController {
         mainPanel.setMinimumSize(new Dimension(Constants.MIN_WINDOW_WIDTH, Constants.MIN_WINDOW_HEIGHT));
         mainPanel.setVisible(true);
         mainPanel.add(initButton("start", 25, e -> startGame(pixels)));
-        mainPanel.add(initButton("stop", 75, e -> stopGame()));
-        mainPanel.add(initButton("clear", 125, e -> clearGame(pixels)));
+        mainPanel.add(initButton("stop", 75, e -> stopGame(pixels)));
+        mainPanel.add(initButton("resume", 125, e -> resumeGame()));
+        mainPanel.add(initButton("clear", 175, e -> clearGame(pixels)));
     }
 
     private JButton initButton(String name, int axisY, ActionListener action) {

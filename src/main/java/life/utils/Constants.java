@@ -25,7 +25,10 @@ public class Constants {
 
     public static final int TEXT_FIELD_HEIGHT = 20;
 
+
     //Game constants
-    public static final int TIMER_DELAY = 500;
+    public static final int TIMER_DELAY = 200;
+
+    public static final int START_COUNT_LIVE_CELL = (int) (Config.WIDTH * Config.HEIGHT * 0.05);
 
 }

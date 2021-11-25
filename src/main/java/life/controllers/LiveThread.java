@@ -14,9 +14,11 @@ public class LiveThread implements Runnable {
 
     private final Pixel[][] pixels;
 
+
     public LiveThread(Pixel[][] pixels) {
         this.pixels = pixels;
     }
+
 
     @Override
     public void run() {
