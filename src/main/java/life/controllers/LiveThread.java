@@ -14,7 +14,9 @@ public class LiveThread implements Runnable {
 
     private Pixel[][] pixels;
 
-    private volatile int stepCount = 0;
+    private static int stepCount = 0;
+
+    private static Timer timer;
 
     public LiveThread() {
     }
@@ -27,7 +29,7 @@ public class LiveThread implements Runnable {
 
     private void initTimer() {
         TimerListener timerListener = new TimerListener();
-        Timer timer = new Timer(Constants.TIMER_DELAY, timerListener);
+        timer = new Timer(Constants.TIMER_DELAY, timerListener);
         timer.start();
     }
 
@@ -35,7 +37,7 @@ public class LiveThread implements Runnable {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (stepCount != Config.NUMBER_OF_STEPS & !Thread.currentThread().isInterrupted()) { //верно ли выражение, проверить
+            if (stepCount != Config.NUMBER_OF_STEPS) {
                 for (int x = 0; x < Config.WIDTH; x++) {
                     for (int y = 0; y < Config.HEIGHT; y++) {
                         int neighbors = 0;
@@ -56,7 +58,8 @@ public class LiveThread implements Runnable {
                 stepCount++;
                 System.out.println(stepCount);
             } else {
-                System.out.println("Thread.interrupted();");
+                System.out.println("LiveThread.stop()");
+                timer.stop();
             }
         }
     }
@@ -74,6 +77,14 @@ public class LiveThread implements Runnable {
 
     public void setPixels(Pixel[][] pixels) {
         this.pixels = pixels;
+    }
+
+    public static int getStepCount() {
+        return stepCount;
+    }
+
+    public static Timer getTimer() {
+        return timer;
     }
 
 }

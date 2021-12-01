@@ -10,9 +10,9 @@ import java.awt.event.ActionListener;
 
 public class Window extends JFrame implements Runnable, FrameController {
 
-    private static volatile JFrame mainPanel;
+    private JFrame mainPanel;
 
-    private volatile Pixel[][] pixels;
+    private Pixel[][] pixels;
 
 
     @Override
@@ -31,8 +31,9 @@ public class Window extends JFrame implements Runnable, FrameController {
         mainPanel.setMinimumSize(new Dimension(Constants.MIN_WINDOW_WIDTH, Constants.MIN_WINDOW_HEIGHT));
         mainPanel.setVisible(true);
         mainPanel.add(initButton(Constants.START_BUTTON, Constants.START_BUTTON, 25, e -> startGame(mainPanel, pixels)));
-        mainPanel.add(initButton(Constants.STOP_BUTTON, Constants.STOP_BUTTON, 75, e -> stopGame()));
-        mainPanel.add(initButton(Constants.CLEAR_BUTTON, Constants.CLEAR_BUTTON, 125, e -> clearGame(pixels)));
+        mainPanel.add(initButton(Constants.STOP_BUTTON, Constants.STOP_BUTTON, 75, e -> stopGame(mainPanel)));
+        mainPanel.add(initButton(Constants.RESUME_BUTTON, Constants.RESUME_BUTTON, 125, e -> resumeGame(mainPanel)));
+        mainPanel.add(initButton(Constants.CLEAR_BUTTON, Constants.CLEAR_BUTTON, 175, e -> clearGame(pixels)));
 
     }
 

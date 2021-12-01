@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 
 public class Pixel extends JPanel {
 
-    public volatile Cell cell;
+    public Cell cell;
 
 
     public Pixel(int x, int y) {
@@ -23,7 +23,11 @@ public class Pixel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                cell.setStatus(Status.LIVE);
+                if (cell.getStatus().equals(Status.NONE)) {
+                    cell.setStatus(Status.LIVE);
+                } else {
+                    cell.setStatus(Status.NONE);
+                }
                 setColor();
             }
         });

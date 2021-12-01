@@ -14,6 +14,8 @@ public class DeathThread implements Runnable {
 
     private Pixel[][] pixels;
 
+    private static Timer timer;
+
 
     public DeathThread() {
     }
@@ -26,7 +28,7 @@ public class DeathThread implements Runnable {
 
     private void initTimer() {
         TimerListener timerListener = new TimerListener();
-        Timer timer = new Timer(Constants.TIMER_DELAY, timerListener);
+        timer = new Timer(Constants.TIMER_DELAY, timerListener);
         timer.start();
     }
 
@@ -34,22 +36,27 @@ public class DeathThread implements Runnable {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            for (int x = 0; x < Config.WIDTH; x++) {
-                for (int y = 0; y < Config.HEIGHT; y++) {
-                    int neighbors = 0;
-                    for (int sx = -1; sx <= 1; sx++) {
-                        for (int sy = -1; sy <= 1; sy++) {
-                            if (!(sx == 0 && sy == 0)) {
-                                if (pixels[(x + sx + Config.WIDTH) % Config.WIDTH]
-                                        [(y + sy + Config.HEIGHT) % Config.HEIGHT].cell.getStatus() == Status.LIVE) {
-                                    neighbors++;
+            if (LiveThread.getStepCount() != Config.NUMBER_OF_STEPS) {
+                for (int x = 0; x < Config.WIDTH; x++) {
+                    for (int y = 0; y < Config.HEIGHT; y++) {
+                        int neighbors = 0;
+                        for (int sx = -1; sx <= 1; sx++) {
+                            for (int sy = -1; sy <= 1; sy++) {
+                                if (!(sx == 0 && sy == 0)) {
+                                    if (pixels[(x + sx + Config.WIDTH) % Config.WIDTH]
+                                            [(y + sy + Config.HEIGHT) % Config.HEIGHT].cell.getStatus() == Status.LIVE) {
+                                        neighbors++;
+                                    }
                                 }
                             }
                         }
+                        initCell(neighbors, pixels[x][y].cell);
+                        pixels[x][y].setColor();
                     }
-                    initCell(neighbors, pixels[x][y].cell);
-                    pixels[x][y].setColor();
                 }
+            } else {
+                System.out.println("DeathThread.stop()");
+                timer.stop();
             }
         }
     }
@@ -67,6 +74,10 @@ public class DeathThread implements Runnable {
 
     public void setPixels(Pixel[][] pixels) {
         this.pixels = pixels;
+    }
+
+    public static Timer getTimer() {
+        return timer;
     }
 
 }

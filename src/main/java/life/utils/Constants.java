@@ -21,6 +21,8 @@ public class Constants {
 
     public static final String CLEAR_BUTTON = "Clear";
 
+    public static final String RESUME_BUTTON = "Resume";
+
 
     //ConfigFrame constants
     public static final int CONFIG_FRAME_WIDTH = 200;
