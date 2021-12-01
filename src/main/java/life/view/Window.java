@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class Window extends JFrame implements Runnable, FrameController {
 
-    private JFrame mainPanel;
+    private static volatile JFrame mainPanel;
 
     private volatile Pixel[][] pixels;
 
@@ -30,17 +30,18 @@ public class Window extends JFrame implements Runnable, FrameController {
         mainPanel.setLocationRelativeTo(null);
         mainPanel.setMinimumSize(new Dimension(Constants.MIN_WINDOW_WIDTH, Constants.MIN_WINDOW_HEIGHT));
         mainPanel.setVisible(true);
-        mainPanel.add(initButton("start", 25, e -> startGame(pixels)));
-        mainPanel.add(initButton("stop", 75, e -> stopGame(pixels)));
-        mainPanel.add(initButton("resume", 125, e -> resumeGame()));
-        mainPanel.add(initButton("clear", 175, e -> clearGame(pixels)));
+        mainPanel.add(initButton(Constants.START_BUTTON, Constants.START_BUTTON, 25, e -> startGame(mainPanel, pixels)));
+        mainPanel.add(initButton(Constants.STOP_BUTTON, Constants.STOP_BUTTON, 75, e -> stopGame()));
+        mainPanel.add(initButton(Constants.CLEAR_BUTTON, Constants.CLEAR_BUTTON, 125, e -> clearGame(pixels)));
+
     }
 
-    private JButton initButton(String name, int axisY, ActionListener action) {
+    private JButton initButton(String id, String name, int axisY, ActionListener action) {
         JButton button = new JButton(name);
         button.setVisible(true);
         button.setBounds(Constants.BUTTON_BOUNDS_X, axisY, 120, 30);
         button.addActionListener(action);
+        button.putClientProperty("id", id);
         return button;
     }
 
@@ -50,6 +51,7 @@ public class Window extends JFrame implements Runnable, FrameController {
             for (int y = 0; y < Config.HEIGHT; y++) {
                 pixels[x][y] = new Pixel(x, y);
                 mainPanel.add(pixels[x][y]);
+
             }
         }
     }

@@ -5,22 +5,29 @@ import life.utils.Constants;
 import life.utils.Status;
 import life.view.Pixel;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.Arrays;
+import java.util.Optional;
+
 public interface FrameController {
 
-    MainThread mainThread = new MainThread();
+    default void startGame(JFrame jFrame, Pixel[][] pixels) {
+        MainThread mainThread = new MainThread();
+        JButton start = (JButton) getButtonById(jFrame, Constants.START_BUTTON).get();
+        JButton clear = (JButton) getButtonById(jFrame, Constants.CLEAR_BUTTON).get();
 
-    default void startGame(Pixel[][] pixels) {
+        start.setText("Running");
+        start.setEnabled(false);
+        clear.setEnabled(false);
+
         mainThread.setPixels(pixels);
         randomGenerationCell(pixels);
         mainThread.run();
     }
 
-    default void stopGame(Pixel[][] pixels) {
+    default void stopGame() {
 
-    }
-
-    default void resumeGame() {
-        mainThread.notify();
     }
 
     default void clearGame(Pixel[][] pixels) {
@@ -32,7 +39,7 @@ public interface FrameController {
         }
     }
 
-    private void randomGenerationCell(Pixel[][] pixels) {
+    default void randomGenerationCell(Pixel[][] pixels) {
         int countLiveCell = 0;
         for (int x = 0; x < Config.WIDTH; x++) {
             for (int y = 0; y < Config.HEIGHT; y++) {
@@ -55,6 +62,13 @@ public interface FrameController {
                 }
             }
         }
+    }
+
+    default Optional<Component> getButtonById(JFrame mainPanel, String id) {
+        return Arrays.stream(mainPanel.getContentPane().getComponents())
+                .filter(component -> component instanceof JButton)
+                .filter(button -> id.equals(((JButton) button).getClientProperty("id")))
+                .findFirst();
     }
 
 }

@@ -16,6 +16,8 @@ public class ConfigFrame extends JFrame implements ActionListener, Runnable {
 
     private final JTextField PIXEL_SIZE;
 
+    private final JTextField NUMBER_OF_STEPS;
+
     private final JButton SUBMIT;
 
 
@@ -30,6 +32,7 @@ public class ConfigFrame extends JFrame implements ActionListener, Runnable {
         WIDTH = initTextField();
         HEIGHT = initTextField();
         PIXEL_SIZE = initTextField();
+        NUMBER_OF_STEPS = initTextField();
         SUBMIT = new JButton("Submit");
         SUBMIT.addActionListener(this);
 
@@ -39,6 +42,8 @@ public class ConfigFrame extends JFrame implements ActionListener, Runnable {
         this.add(HEIGHT);
         this.add(new JLabel("Pixel size"));
         this.add(PIXEL_SIZE);
+        this.add(new JLabel("Number of steps"));
+        this.add(NUMBER_OF_STEPS);
         this.add(SUBMIT);
         this.pack();
     }
@@ -55,6 +60,7 @@ public class ConfigFrame extends JFrame implements ActionListener, Runnable {
             Config.WIDTH = Integer.parseInt(WIDTH.getText());
             Config.HEIGHT = Integer.parseInt(HEIGHT.getText());
             Config.PIXEL_SIZE = Integer.parseInt(PIXEL_SIZE.getText());
+            Config.NUMBER_OF_STEPS = Integer.parseInt(NUMBER_OF_STEPS.getText());
             dispose();
             Window window = new Window();
             window.run();
@@ -63,7 +69,6 @@ public class ConfigFrame extends JFrame implements ActionListener, Runnable {
 
     @Override
     public void run() {
-
     }
 
 }

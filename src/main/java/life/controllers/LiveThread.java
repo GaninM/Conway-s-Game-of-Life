@@ -12,11 +12,11 @@ import java.awt.event.ActionListener;
 
 public class LiveThread implements Runnable {
 
-    private final Pixel[][] pixels;
+    private Pixel[][] pixels;
 
+    private volatile int stepCount = 0;
 
-    public LiveThread(Pixel[][] pixels) {
-        this.pixels = pixels;
+    public LiveThread() {
     }
 
 
@@ -35,22 +35,28 @@ public class LiveThread implements Runnable {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            for (int x = 0; x < Config.WIDTH; x++) {
-                for (int y = 0; y < Config.HEIGHT; y++) {
-                    int neighbors = 0;
-                    for (int sx = -1; sx <= 1; sx++) {
-                        for (int sy = -1; sy <= 1; sy++) {
-                            if (!(sx == 0 && sy == 0)) {
-                                if (pixels[(x + sx + Config.WIDTH) % Config.WIDTH]
-                                        [(y + sy + Config.HEIGHT) % Config.HEIGHT].cell.getStatus() == Status.LIVE) {
-                                    neighbors++;
+            if (stepCount != Config.NUMBER_OF_STEPS & !Thread.currentThread().isInterrupted()) { //верно ли выражение, проверить
+                for (int x = 0; x < Config.WIDTH; x++) {
+                    for (int y = 0; y < Config.HEIGHT; y++) {
+                        int neighbors = 0;
+                        for (int sx = -1; sx <= 1; sx++) {
+                            for (int sy = -1; sy <= 1; sy++) {
+                                if (!(sx == 0 && sy == 0)) {
+                                    if (pixels[(x + sx + Config.WIDTH) % Config.WIDTH]
+                                            [(y + sy + Config.HEIGHT) % Config.HEIGHT].cell.getStatus() == Status.LIVE) {
+                                        neighbors++;
+                                    }
                                 }
                             }
                         }
+                        initCell(neighbors, pixels[x][y].cell);
+                        pixels[x][y].setColor();
                     }
-                    initCell(neighbors, pixels[x][y].cell);
-                    pixels[x][y].setColor();
                 }
+                stepCount++;
+                System.out.println(stepCount);
+            } else {
+                System.out.println("Thread.interrupted();");
             }
         }
     }
@@ -64,6 +70,10 @@ public class LiveThread implements Runnable {
             return (around == 3) ? Status.LIVE : Status.NONE;
         }
         return status;
+    }
+
+    public void setPixels(Pixel[][] pixels) {
+        this.pixels = pixels;
     }
 
 }

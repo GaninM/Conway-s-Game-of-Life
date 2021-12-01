@@ -15,19 +15,25 @@ public class Constants {
 
     public static final int BUTTON_BOUNDS_X = Config.WIDTH * Config.PIXEL_SIZE + 20;
 
+    public static final String START_BUTTON = "Start";
+
+    public static final String STOP_BUTTON = "Stop";
+
+    public static final String CLEAR_BUTTON = "Clear";
+
 
     //ConfigFrame constants
-    public static final int CONFIG_FRAME_WIDTH = 350;
+    public static final int CONFIG_FRAME_WIDTH = 200;
 
-    public static final int CONFIG_FRAME_HEIGHT = 125;
+    public static final int CONFIG_FRAME_HEIGHT = 300;
 
-    public static final int TEXT_FIELD_WIDTH = 80;
+    public static final int TEXT_FIELD_WIDTH = 60;
 
     public static final int TEXT_FIELD_HEIGHT = 20;
 
 
     //Game constants
-    public static final int TIMER_DELAY = 200;
+    public static final int TIMER_DELAY = 350;
 
     public static final int START_COUNT_LIVE_CELL = (int) (Config.WIDTH * Config.HEIGHT * 0.05);
 

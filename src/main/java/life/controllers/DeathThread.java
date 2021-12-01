@@ -12,11 +12,12 @@ import java.awt.event.ActionListener;
 
 public class DeathThread implements Runnable {
 
-    private final Pixel[][] pixels;
+    private Pixel[][] pixels;
 
-    public DeathThread(Pixel[][] pixels) {
-        this.pixels = pixels;
+
+    public DeathThread() {
     }
+
 
     @Override
     public void run() {
@@ -62,6 +63,10 @@ public class DeathThread implements Runnable {
             return (around < 2 || around > 4) ? Status.NONE : Status.LIVE;
         }
         return status;
+    }
+
+    public void setPixels(Pixel[][] pixels) {
+        this.pixels = pixels;
     }
 
 }

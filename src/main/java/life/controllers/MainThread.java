@@ -4,7 +4,8 @@ import life.view.Pixel;
 
 public class MainThread implements Runnable {
 
-    private  Pixel[][] pixels;
+    private Pixel[][] pixels;
+
 
     public MainThread() {
     }
@@ -12,13 +13,15 @@ public class MainThread implements Runnable {
 
     @Override
     public void run() {
-        LiveThread liveThread = new LiveThread(pixels);
-        DeathThread deathThread = new DeathThread(pixels);
+        LiveThread liveThread = new LiveThread();
+        DeathThread deathThread = new DeathThread();
+        liveThread.setPixels(pixels);
+        deathThread.setPixels(pixels);
         liveThread.run();
         deathThread.run();
     }
 
-    void setPixels(Pixel[][] pixels) {
+    public void setPixels(Pixel[][] pixels) {
         this.pixels = pixels;
     }
 
