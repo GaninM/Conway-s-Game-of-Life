@@ -18,6 +18,7 @@ public class LiveThread implements Runnable {
 
     private static Timer timer;
 
+
     public LiveThread() {
     }
 
@@ -26,6 +27,7 @@ public class LiveThread implements Runnable {
     public void run() {
         initTimer();
     }
+
 
     private void initTimer() {
         TimerListener timerListener = new TimerListener();

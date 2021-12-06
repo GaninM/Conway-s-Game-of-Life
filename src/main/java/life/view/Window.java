@@ -34,7 +34,6 @@ public class Window extends JFrame implements Runnable, FrameController {
         mainPanel.add(initButton(Constants.STOP_BUTTON, Constants.STOP_BUTTON, 75, e -> stopGame(mainPanel)));
         mainPanel.add(initButton(Constants.RESUME_BUTTON, Constants.RESUME_BUTTON, 125, e -> resumeGame(mainPanel)));
         mainPanel.add(initButton(Constants.CLEAR_BUTTON, Constants.CLEAR_BUTTON, 175, e -> clearGame(pixels)));
-
     }
 
     private JButton initButton(String id, String name, int axisY, ActionListener action) {

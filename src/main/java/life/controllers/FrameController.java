@@ -27,17 +27,17 @@ public interface FrameController {
     }
 
     default void stopGame(JFrame jFrame) {
+        JButton clear = (JButton) getButtonById(jFrame, Constants.CLEAR_BUTTON).get();
         LiveThread.getTimer().stop();
         DeathThread.getTimer().stop();
-        JButton clear = (JButton) getButtonById(jFrame, Constants.CLEAR_BUTTON).get();
         clear.setEnabled(true);
     }
 
     default void resumeGame(JFrame jFrame) {
+        JButton clear = (JButton) getButtonById(jFrame, Constants.CLEAR_BUTTON).get();
         LiveThread.getTimer().start();
         DeathThread.getTimer().start();
-        JButton clear = (JButton) getButtonById(jFrame, Constants.CLEAR_BUTTON).get();
-        clear.setEnabled(true);
+        clear.setEnabled(false);
     }
 
     default void clearGame(Pixel[][] pixels) {
