@@ -14,7 +14,7 @@ public class LiveThread implements Runnable {
 
     private Pixel[][] pixels;
 
-    private static int stepCount = 0;
+    private int stepCount = 0;
 
     private static Timer timer;
 
@@ -79,10 +79,6 @@ public class LiveThread implements Runnable {
 
     public void setPixels(Pixel[][] pixels) {
         this.pixels = pixels;
-    }
-
-    public static int getStepCount() {
-        return stepCount;
     }
 
     public static Timer getTimer() {

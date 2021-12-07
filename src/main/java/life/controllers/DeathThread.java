@@ -16,6 +16,8 @@ public class DeathThread implements Runnable {
 
     private static Timer timer;
 
+    private int stepCount = 0;
+
 
     public DeathThread() {
     }
@@ -36,7 +38,7 @@ public class DeathThread implements Runnable {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (LiveThread.getStepCount() != Config.NUMBER_OF_STEPS) {
+            if (stepCount != Config.NUMBER_OF_STEPS) {
                 for (int x = 0; x < Config.WIDTH; x++) {
                     for (int y = 0; y < Config.HEIGHT; y++) {
                         int neighbors = 0;
@@ -54,6 +56,7 @@ public class DeathThread implements Runnable {
                         pixels[x][y].setColor();
                     }
                 }
+                stepCount++;
             } else {
                 System.out.println("DeathThread.stop()");
                 timer.stop();
