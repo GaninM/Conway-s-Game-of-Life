@@ -1,9 +1,9 @@
 package life.utils;
 
 public enum Status {
-    NONE, //Пусто
-    BORN, //Рождается
-    LIVE, //Живет
-    DIES //Умирает
+    NONE,
+    BORN,
+    LIVE,
+    DIES
 
 }
