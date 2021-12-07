@@ -19,10 +19,6 @@ public class LiveThread implements Runnable {
     private static Timer timer;
 
 
-    public LiveThread() {
-    }
-
-
     @Override
     public void run() {
         initTimer();
@@ -39,31 +35,36 @@ public class LiveThread implements Runnable {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (stepCount != Config.NUMBER_OF_STEPS) {
+            if (stepCount == Config.NUMBER_OF_STEPS) {
+                System.out.println("LiveThread.stop()");
+                timer.stop();
+            } else {
                 for (int x = 0; x < Config.WIDTH; x++) {
                     for (int y = 0; y < Config.HEIGHT; y++) {
-                        int neighbors = 0;
-                        for (int sx = -1; sx <= 1; sx++) {
-                            for (int sy = -1; sy <= 1; sy++) {
-                                if (!(sx == 0 && sy == 0)) {
-                                    if (pixels[(x + sx + Config.WIDTH) % Config.WIDTH]
-                                            [(y + sy + Config.HEIGHT) % Config.HEIGHT].cell.getStatus() == Status.LIVE) {
-                                        neighbors++;
-                                    }
-                                }
-                            }
-                        }
+                        int neighbors = aroundAliveNeighbors(x, y);
                         initCell(neighbors, pixels[x][y].cell);
                         pixels[x][y].setColor();
                     }
                 }
                 stepCount++;
                 System.out.println(stepCount);
-            } else {
-                System.out.println("LiveThread.stop()");
-                timer.stop();
             }
         }
+    }
+
+
+    int aroundAliveNeighbors(int x, int y) {
+        int neighbors = 0;
+        for (int sx = -1; sx <= 1; sx++) {
+            for (int sy = -1; sy <= 1; sy++) {
+                int width = (x + sx + Config.WIDTH) % Config.WIDTH;
+                int height = (y + sy + Config.HEIGHT) % Config.HEIGHT;
+                if (!(sx == 0 && sy == 0) & pixels[width][height].cell.getStatus() == Status.LIVE) {
+                    neighbors++;
+                }
+            }
+        }
+        return neighbors;
     }
 
     private void initCell(int neighbors, Cell cell) {

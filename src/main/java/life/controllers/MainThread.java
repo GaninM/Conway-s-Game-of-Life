@@ -7,10 +7,6 @@ public class MainThread implements Runnable {
     private Pixel[][] pixels;
 
 
-    public MainThread() {
-    }
-
-
     @Override
     public void run() {
         LiveThread liveThread = new LiveThread();
