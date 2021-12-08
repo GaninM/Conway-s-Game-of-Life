@@ -7,8 +7,6 @@ import life.utils.Status;
 import life.view.Pixel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class DeathThread implements Runnable {
 
@@ -25,15 +23,11 @@ public class DeathThread implements Runnable {
     }
 
     private void initTimer() {
-        TimerListener timerListener = new TimerListener();
-        timer = new Timer(Constants.TIMER_DELAY, timerListener);
+        timer = new Timer(Constants.TIMER_DELAY, e -> deathGeneration());
         timer.start();
     }
 
-    private class TimerListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
+        public void deathGeneration() {
             if (stepCount == Config.NUMBER_OF_STEPS) {
                 System.out.println("DeathThread is stop");
                 timer.stop();
@@ -48,7 +42,6 @@ public class DeathThread implements Runnable {
                 stepCount++;
             }
         }
-    }
 
     int aroundAliveNeighbors(int x, int y) {
         int neighbors = 0;

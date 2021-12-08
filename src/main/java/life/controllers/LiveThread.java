@@ -7,8 +7,6 @@ import life.utils.Status;
 import life.view.Pixel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LiveThread implements Runnable {
 
@@ -26,15 +24,11 @@ public class LiveThread implements Runnable {
 
 
     private void initTimer() {
-        TimerListener timerListener = new TimerListener();
-        timer = new Timer(Constants.TIMER_DELAY, timerListener);
+        timer = new Timer(Constants.TIMER_DELAY, e -> liveGeneration());
         timer.start();
     }
 
-    private class TimerListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
+        public void liveGeneration() {
             if (stepCount == Config.NUMBER_OF_STEPS) {
                 System.out.println("LiveThread is stop");
                 timer.stop();
@@ -50,8 +44,6 @@ public class LiveThread implements Runnable {
                 System.out.println(stepCount);
             }
         }
-    }
-
 
     int aroundAliveNeighbors(int x, int y) {
         int neighbors = 0;
