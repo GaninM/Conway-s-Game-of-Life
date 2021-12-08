@@ -35,7 +35,7 @@ public class DeathThread implements Runnable {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (stepCount == Config.NUMBER_OF_STEPS) {
-                System.out.println("DeathThread.stop()");
+                System.out.println("DeathThread is stop");
                 timer.stop();
             } else {
                 for (int x = 0; x < Config.WIDTH; x++) {

@@ -36,7 +36,7 @@ public class LiveThread implements Runnable {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (stepCount == Config.NUMBER_OF_STEPS) {
-                System.out.println("LiveThread.stop()");
+                System.out.println("LiveThread is stop");
                 timer.stop();
             } else {
                 for (int x = 0; x < Config.WIDTH; x++) {
