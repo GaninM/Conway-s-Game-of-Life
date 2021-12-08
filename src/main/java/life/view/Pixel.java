@@ -23,21 +23,21 @@ public class Pixel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                cell.setStatus(Status.LIVE);
-                setBackground(getColor(Status.LIVE)); //Проверка работоспособности мыши, позже удалить.
+                if (cell.getStatus().equals(Status.NONE)) {
+                    cell.setStatus(Status.LIVE);
+                } else {
+                    cell.setStatus(Status.NONE);
+                }
+                setColor();
             }
         });
     }
 
-    //Receiving color depending on the status
     public static Color getColor(Status status) {
         switch (status) {
             default:
             case NONE:
                 return Color.pink;
-            case BORN:
-            case DIES:
-                return Color.LIGHT_GRAY;
             case LIVE:
                 return Color.CYAN;
         }

@@ -8,4 +8,6 @@ public class Config {
 
     public static int PIXEL_SIZE;
 
+    public static int NUMBER_OF_STEPS;
+
 }
