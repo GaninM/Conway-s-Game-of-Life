@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+.idea/
+.gradle/
+build
+=======
+.gradle/*
+.idea/*
+build/*
+>>>>>>> origin/Life
