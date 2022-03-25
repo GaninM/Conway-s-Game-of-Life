@@ -1,8 +1,8 @@
-#Conway's Game of Life
+# Conway's Game of Life
 
 [Example of Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)  
 
-####*A feature of the implementation is the generation of cells and the destruction of cells by separate threads.*
+#### *A feature of the implementation is the generation of cells and the destruction of cells by separate threads.*
 
 *When launching the application through the Main class, you need to set the characteristics of the playing field 
 (height, width, cell size and the number of steps until the simulation stops)*
