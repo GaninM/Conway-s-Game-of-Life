@@ -2,12 +2,35 @@
 
 [Example of Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)  
 
-#### *A feature of the implementation is the generation of cells and the destruction of cells by separate threads.*
+Проект, созданный, для улучшения понимания работы многопоточнсти.
+Интерфейс создан с помощью swing.
 
-*When launching the application through the Main class, you need to set the characteristics of the playing field 
-(height, width, cell size and the number of steps until the simulation stops)*
 
-*You can place the cells before the simulation starts. If you do not put a cell,
-then the cells will be generated on their own in random places.*
 
-*You can also place cells during the simulation or while paused*
+Описание проекта:
+- В проекте используется библиотека swing для создания визуальной части программы.
+- В работе программы используются два потока. Один поток создает новые клетки, второй уничтожает старые по заданным условиям.
+- В любой момент программу можно поставить на паузу и внести корректировки в генерацию или полностью очистить уже сгенерированные клетки.
+
+
+1.При запуске приложения мы видим всплывающее окно с тремя полями: 
+- колличество клеток в ширину и высоту
+- размер самой клетки 
+- колличество шагов до остановления генерации
+
+![image](https://user-images.githubusercontent.com/88325015/225217485-bc02158d-f2d8-4eac-84a8-1c7b836282e5.png)
+
+2. После нажатия кнопки submit мы видим новое окно с параметрами которые мы ввели.
+
+![image](https://user-images.githubusercontent.com/88325015/225219078-a83c36c1-5e49-4788-b47e-059c8046d658.png)
+
+Также мы видим справка кнопки:
+- Star - начинает работу программы
+- Stop - ставит программу на паузу
+- Resume - Возобнавляет работу программы, после остановки
+- Clear - очищает все сгенерированные клетки, во время паузы
+
+*Прежде чем нажать кнопку Start, у нас есть возможность самостоятельно поставить живые клетки на поле.
+
+*Если поле будет пустым после нажатия кнопки Start, то клетки сгенерируются автоматически в случайном порядке.
+![image](https://user-images.githubusercontent.com/88325015/225220285-46ffa488-8858-4537-a301-6149184462f8.png)
